@@ -1,4 +1,4 @@
-# Q-Learning Control Algorithm using Gymnasium
+# Implementation of Q-Learning Control Algorithm Using Gymnasium
 ## Aim
 To implement the **Q-Learning control algorithm** using the Gymnasium `FrozenLake-v1` environment and learn a policy for reaching the goal while avoiding holes.
 
