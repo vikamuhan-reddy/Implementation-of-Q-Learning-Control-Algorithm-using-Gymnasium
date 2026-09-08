@@ -58,18 +58,14 @@ The environment contains **16 states** and **4 actions**.
 
 ## Q-Learning
 
-Q-Learning is a **model-free reinforcement learning algorithm** that learns the optimal **action-value function (Q-function)** without knowing the environment's transition model.
+Q-Learning is a **model-free reinforcement learning algorithm** that learns the optimal **action-value function** without knowing the environment's transition model.
 
 The **Q-value** represents the expected return for taking action `a` in state `s`.
 
 The Q-Learning update rule is:
 
 $$
-Q(S_t, A_t) \leftarrow Q(S_t, A_t) +
-\alpha \left[
-R_{t+1} + \gamma \max_a Q(S_{t+1}, a)
-- Q(S_t, A_t)
-\right]
+Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \left[ R_{t+1} + \gamma \max_a Q(S_{t+1}, a) - Q(S_t, A_t) \right]
 $$
 
 ### Parameters
@@ -83,7 +79,6 @@ $$
 | $\alpha$ | Learning rate |
 | $\gamma$ | Discount factor |
 
----
 
 ## Epsilon-Greedy Action Selection
 
