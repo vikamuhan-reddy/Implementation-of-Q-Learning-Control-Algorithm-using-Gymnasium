@@ -54,22 +54,28 @@ The environment contains **16 states** and **4 actions**.
 | Falling into a hole | `0` |
 | Reaching the goal | `1` |
 
-## Theory
-**Q-Learning** is a model-free reinforcement learning algorithm that learns the optimal action-value function without knowing the environment's transition model.
-The Q-value represents the expected return for taking action `a` in state `s`.
+# Theory
+
+## Q-Learning
+
+Q-Learning is a **model-free reinforcement learning algorithm** that learns the optimal **action-value function (Q-function)** without knowing the environment's transition model.
+
+The **Q-value** represents the expected return for taking action `a` in state `s`.
+
 The Q-Learning update rule is:
+
 $$
-Q(S_t,A_t) \leftarrow Q(S_t,A_t) +
-\alpha
-\left[
-R_{t+1} +
-\gamma \max_a Q(S_{t+1},a) -
-Q(S_t,A_t)
+Q(S_t, A_t) \leftarrow Q(S_t, A_t) +
+\alpha \left[
+R_{t+1} + \gamma \max_a Q(S_{t+1}, a)
+- Q(S_t, A_t)
 \right]
 $$
-Where:
+
+### Parameters
+
 | Symbol | Meaning |
-|--------|---------|
+|---|---|
 | $S_t$ | Current state |
 | $A_t$ | Current action |
 | $R_{t+1}$ | Received reward |
@@ -77,9 +83,17 @@ Where:
 | $\alpha$ | Learning rate |
 | $\gamma$ | Discount factor |
 
+---
+
 ## Epsilon-Greedy Action Selection
-Epsilon-greedy balances **exploration** and **exploitation**.
-With probability $\epsilon$, a random action is selected. Otherwise, the action with the highest Q-value is selected.
+
+**Epsilon-greedy** is an action-selection strategy that balances **exploration** and **exploitation**.
+
+- With probability $\epsilon$, a **random action** is selected to explore the environment.
+- With probability $1-\epsilon$, the action with the **highest Q-value** is selected to exploit the current knowledge.
+
+The action-selection rule is:
+
 $$
 a =
 \begin{cases}
@@ -87,7 +101,8 @@ a =
 \arg\max_a Q(s,a), & \text{with probability } 1-\epsilon
 \end{cases}
 $$
-Epsilon is gradually decreased during training so that the agent moves from exploration toward exploitation.
+
+During training, $\epsilon$ is gradually decreased. This allows the agent to move from **exploration** in the early stages toward **exploitation** as it learns the optimal policy.
 
 ## Algorithm
 1. Create the FrozenLake environment.
